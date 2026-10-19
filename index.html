@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body>
+<title>OBSCENE</title>
+<meta name="description" content="OBSCENE is a web design studio. We give your website a personality: yours. Sites for producers, photographers, videographers and anyone creative.">
+<meta property="og:title" content="OBSCENE — web design studio">
+<meta property="og:description" content="Most websites look like they came out of the same box. Yours shouldn't.">
+<style>
+@font-face{font-family:"Anton"; src:url(fonts/anton.woff2) format("woff2"); font-display:swap}
+@font-face{font-family:"Courier Prime"; src:url(fonts/courier.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Courier Prime"; src:url(fonts/courier-700.woff2) format("woff2"); font-weight:700; font-display:swap}
+@font-face{font-family:"Arimo"; src:url(fonts/arimo.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Arimo"; src:url(fonts/arimo-700.woff2) format("woff2"); font-weight:700; font-display:swap}
+@font-face{font-family:"Tinos"; src:url(fonts/tinos.woff2) format("woff2"); font-weight:400; font-display:swap}
+@font-face{font-family:"Tinos"; src:url(fonts/tinos-700.woff2) format("woff2"); font-weight:700; font-display:swap}
+@font-face{font-family:"Tinos"; src:url(fonts/tinos-italic.woff2) format("woff2"); font-style:italic; font-display:swap}
+@font-face{font-family:"Unbounded"; src:url(fonts/unbounded-900.woff2) format("woff2"); font-weight:900; font-display:swap}
+@font-face{font-family:"Silkscreen"; src:url(fonts/silkscreen.woff2) format("woff2"); font-display:swap}
+
+/* OBSCENE online: a black 2000s portal. One page per old platform, one clear way to start on every page. */
+:root{
+  --bg:#000000; --panel:#0B0B0D; --fg:#E5E5E5; --dim:#9A9AA4; --line:#505050; --line2:#26262B;
+  --ice:#A9D3FF; --link:#6CB4FF; --visited:#B48CFF; --yellow:#FBEA61; --vhs:#1030C8;
+  --ms1:#5A6A7A; --ms2:#3A4A5A;
+  --win:#C0C0C0; --win-hi:#FFFFFF; --win-lo:#808080; --win-title:#000080; --win-title2:#1084D0;
+  --wk-bg:#101418; --wk-fg:#EAECF0; --wk-dim:#A2A9B1; --wk-link:#88A3E8; --wk-line:#54595D; --wk-box:#1B1F24;
+  --impact:"Anton","Impact","Arial Narrow",sans-serif;
+  --mono:"Courier Prime","Courier New",Courier,monospace;
+  --sans:"Arimo",Arial,Helvetica,sans-serif;
+  --serif:"Tinos","Times New Roman",Times,serif;
+  --pixel:"Silkscreen",monospace;
+  --bar:24px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{-webkit-text-size-adjust:100%; scroll-padding-top:calc(var(--bar) + 10px)}
+body{background:var(--bg); color:var(--fg); font:15px/1.5 var(--sans); overflow-x:hidden}
+a{color:var(--link)} a:visited{color:var(--visited)}
+img,video,canvas{display:block; max-width:100%}
+button{font:inherit; color:inherit; cursor:pointer}
+:focus-visible{outline:2px dotted var(--yellow); outline-offset:2px}
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.wrap{width:100%; max-width:980px; margin:0 auto; padding-left:max(12px, env(safe-area-inset-left, 0px)); padding-right:max(12px, env(safe-area-inset-right, 0px))}
+.chrome{background-image:linear-gradient(180deg,#FBFDFF 0%,#D6EBFF 26%,#8FB2DA 45%,#10131A 50%,#2B3240 58%,#A9B4C6 78%,#F4F7FB 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+/* ── intro: VCR blue screen + tape counter ── */
+.pre{position:fixed; inset:0; z-index:200; background:var(--vhs); color:#fff; display:grid; grid-template-rows:auto 1fr auto; padding:calc(env(safe-area-inset-top,0px) + 16px) max(16px, env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px, env(safe-area-inset-left,0px)); overflow:hidden; transform-origin:50% 50%; font-family:var(--pixel); animation:preFailsafe .01s linear 6s forwards}
+@keyframes preFailsafe{to{visibility:hidden; opacity:0}}
+.pre[hidden]{display:none}
+.pre-frames{position:absolute; inset:0; z-index:0}
+.pre-frames img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; mix-blend-mode:luminosity}
+.pre-frames img.on{opacity:.5}
+.pre::after{content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:repeating-linear-gradient(to bottom, rgba(0,0,0,.22) 0 1px, transparent 1px 3px)}
+.pre-row{position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:clamp(16px, 2.8vw, 26px); text-shadow:0 0 8px rgba(0,0,0,.35)}
+.pre-mid{position:relative; z-index:2; display:grid; place-content:center; justify-items:center; gap:14px; text-align:center}
+.pre-count{font-size:clamp(40px, 11vw, 140px); line-height:.9; font-variant-numeric:tabular-nums; text-shadow:0 0 18px rgba(255,255,255,.35); white-space:nowrap}
+.pre-track{width:min(420px, 70vw); height:12px; border:2px solid #fff; padding:2px}
+.pre-track i{display:block; height:100%; width:0; background:#fff}
+.pre-tr{font-size:clamp(13px, 2vw, 18px)}
+.pre-skip{background:transparent; border:1px solid rgba(255,255,255,.55); color:#fff; padding:6px 10px; font:inherit; font-size:.8em}
+.pre.tracking .pre-count{animation:jitter .12s steps(2) infinite}
+@keyframes jitter{50%{transform:translateX(3px)}}
+.pre.off{animation:crt .55s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes crt{0%{transform:scale(1,1); filter:brightness(1)} 55%{transform:scale(1,.004); filter:brightness(3)} 100%{transform:scale(0,.004); filter:brightness(5); opacity:0}}
+
+/* tape look for every moving picture */
+.tape{position:relative; background:#05060c; overflow:hidden}
+.tape video{width:100%; height:100%; object-fit:cover}
+.tape::after{content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px)}
+.rec{position:absolute; left:8px; top:6px; z-index:2; font:11px/1 var(--pixel); color:#fff; text-shadow:0 0 4px #000; display:flex; gap:6px; align-items:center}
+.rec i{width:7px; height:7px; border-radius:50%; background:#FF3B30; animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ── utility bar ── */
+.ubar{position:fixed; top:0; left:0; right:0; z-index:50; height:calc(var(--bar) + env(safe-area-inset-top, 0px)); padding-top:env(safe-area-inset-top, 0px); background:var(--bg); border-bottom:1px solid var(--line); font:12px/1 var(--mono)}
+.ubar .wrap{height:var(--bar); display:flex; align-items:center; gap:10px}
+.ubar .home{color:var(--fg); text-decoration:none; font-weight:700; letter-spacing:.04em}
+.ubar .path{color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ubar nav{display:none; gap:12px; margin-left:auto}
+.ubar nav a{color:var(--dim); text-decoration:none} .ubar nav a:hover, .ubar nav a[aria-current="page"]{color:var(--fg); text-decoration:underline}
+.go{margin-left:auto; height:18px; display:inline-flex; align-items:center; padding:0 8px; background:var(--yellow); color:#000 !important; border:1px solid #000; box-shadow:inset 1px 1px 0 #fff8b8, inset -1px -1px 0 #b3a420; font:700 11px/1 var(--mono); text-decoration:none; white-space:nowrap}
+.go:active{box-shadow:inset 1px 1px 0 #b3a420}
+@media (min-width:760px){ .ubar nav{display:flex} .ubar nav + .go{margin-left:4px} }
+
+main{padding-top:calc(var(--bar) + 14px)}
+.page{padding-bottom:40px}
+.page[hidden]{display:none}
+.crumb{font:12px/1.4 var(--mono); color:var(--dim); margin:4px 0 12px}
+.crumb a{color:var(--dim)}
+.crumb b{color:var(--fg)}
+
+/* ── home ── */
+.hero{aspect-ratio:16/9; border:2px solid var(--line)}
+.hero .cap{position:absolute; right:8px; bottom:6px; z-index:2; font:11px/1 var(--pixel); color:#fff; text-shadow:0 0 4px #000}
+.intro{display:grid; gap:14px; margin-top:14px}
+@media (min-width:860px){ .intro{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); align-items:start} }
+
+/* myspace profile */
+.ms{font-family:var(--impact); border:1px solid #333}
+.ms-head{display:flex; align-items:center; gap:12px; padding:8px 12px; background:linear-gradient(180deg,var(--ms1),var(--ms2)); border-bottom:1px solid #333}
+.ms-av{width:56px; height:56px; flex:none; border:1px solid #333; background:#05060c; display:grid; place-items:center}
+.ms-av span{width:40px; height:40px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff 0%,#D6EBFF 22%,#8FB2DA 48%,#1A1F2A 52%,#A9B4C6 80%)}
+.ms-name{font-size:20px; letter-spacing:.04em; color:#fff; line-height:1.1}
+.ms-role{font:12px/1.35 var(--sans); color:#fff; opacity:.9}
+.ms-main{display:grid; background:#F5F5F5; color:#222}
+@media (min-width:560px){ .ms-main{grid-template-columns:minmax(0,1fr) 190px} }
+.ms-bio{padding:12px; font:14px/1.5 var(--sans); display:grid; gap:10px}
+.ms-bio h3, .ms-side h3{font:13px/1 var(--impact); letter-spacing:.06em; text-transform:uppercase; color:#fff; background:#5A6A7A; padding:5px 8px; margin:0 -12px}
+.ms-bio h3{margin-top:2px}
+.ms-bio p{min-width:0}
+.ms-msg{border:1px dashed #9AA3AE; padding:8px 10px; background:#fff; font-style:italic}
+.ms-side{padding:12px; border-top:1px solid #333; display:grid; gap:10px; align-content:start; font:13px/1.5 var(--sans)}
+@media (min-width:560px){ .ms-side{border-top:0; border-left:1px solid #333} }
+.ms-side a{color:#1B3A8C} .ms-side a:visited{color:#5B2A8C}
+.ms-side ul{list-style:none; display:grid; gap:4px}
+.ms-cta{display:block; text-align:center; background:var(--yellow); color:#000 !important; border:1px solid #000; padding:9px 8px; font:16px/1 var(--impact); letter-spacing:.06em; text-decoration:none; box-shadow:inset 1px 1px 0 #fff8b8, inset -2px -2px 0 #b3a420}
+
+/* compact radio: plays the playlist straight from SoundCloud */
+.player{position:relative; background:#000; border:2px solid var(--line); color:#fff; font:13px/1.4 var(--mono)}
+.pl-top{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:7px 12px; border-bottom:2px solid var(--line)}
+.pl-title{font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:12px}
+.pl-top a{font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--ice)}
+.pl-now{display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; align-items:center; padding:10px 12px}
+.pl-ctl{display:flex; gap:4px}
+.pl-btn{width:32px; height:32px; display:grid; place-items:center; background:#000; color:#fff; border:2px solid var(--line); padding:0}
+.pl-btn svg{width:12px; height:12px; fill:currentColor}
+.pl-btn.main{width:38px; border-color:#fff}
+.pl-btn:hover{background:#E5E5E5; color:#000}
+.pl-btn:disabled{opacity:.3; cursor:not-allowed} .pl-btn:disabled:hover{background:#000; color:#fff}
+.pl-info{min-width:0}
+.pl-track{font-weight:700; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.pl-track a{color:var(--ice)}
+.pl-meta{display:flex; justify-content:space-between; font-size:11px; opacity:.75; margin-top:2px}
+.pl-bar{height:5px; border:1px solid var(--line); margin-top:5px; position:relative}
+.pl-bar b{position:absolute; left:0; top:0; bottom:0; width:0; background:var(--ice)}
+.pl-list{max-height:132px; overflow-y:auto; list-style:none; border-top:2px solid var(--line)}
+.pl-list:empty{display:none}
+.pl-list li{display:flex; gap:8px; padding:7px 12px; border-bottom:1px solid var(--line2); cursor:pointer; font-size:12px}
+.pl-list li:hover{background:#E5E5E5; color:#000}
+.pl-list li.on{background:#fff; color:#000}
+.pl-list li span:first-child{opacity:.6; min-width:22px}
+.pl-list li span:last-child{flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.pl-embed{position:absolute; left:-9999px; top:0; width:320px; height:120px; overflow:hidden}
+.pl-embed.show{position:static; width:auto; height:auto; padding:0 12px 12px}
+.pl-embed iframe{display:block; width:100%; height:120px; border:0}
+.pl-note{padding:0 12px 10px; font-size:11px; color:var(--dim)}
+.pl-note:empty{display:none}
+
+/* portal tiles */
+.portal{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:14px}
+@media (min-width:700px){ .portal{grid-template-columns:repeat(3,1fr)} }
+.tile{position:relative; display:block; aspect-ratio:1/1; border:2px solid var(--line); text-decoration:none; color:#fff !important}
+.tile.wide{grid-column:span 2; aspect-ratio:2/1}
+.tile.wide video{position:absolute; inset:0}
+@media (min-width:700px){ .tile.wide{aspect-ratio:auto} }
+.tile .lbl{position:absolute; left:0; right:0; bottom:0; z-index:2; display:flex; justify-content:space-between; align-items:end; gap:6px; padding:8px 10px; background:linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,0))}
+.tile b{font:clamp(22px, 5vw, 34px)/1 var(--impact); letter-spacing:.03em; text-transform:uppercase; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.tile small{font:11px/1.2 var(--mono); color:#D8D8E0; text-align:right}
+.tile:hover{border-color:var(--yellow)} .tile:hover b{color:var(--yellow)}
+.hint{font:12px/1.5 var(--mono); color:var(--dim); margin-top:10px}
+.hint kbd{font:inherit; color:var(--fg); border:1px solid var(--line); padding:0 4px}
+@media (max-width:759px){ .hint.keys{display:none} }
+
+/* ── work: photo-feed parody ── */
+.ig-head{display:grid; grid-template-columns:auto 1fr; gap:14px 18px; align-items:center; padding:6px 0 16px; border-bottom:1px solid var(--line2); margin-bottom:22px}
+.ig-av{width:84px; height:84px; border-radius:50%; padding:3px; background:linear-gradient(45deg,#FBEA61,#FF3B9A,#7B5CFF)}
+.ig-av span{display:block; width:100%; height:100%; border-radius:50%; border:3px solid #000; background:radial-gradient(circle at 35% 30%,#fff 0%,#D6EBFF 22%,#8FB2DA 48%,#1A1F2A 52%,#A9B4C6 80%)}
+.ig-name{font:700 20px/1.2 var(--sans)} .ig-name small{font:400 14px var(--sans); color:var(--dim); margin-left:6px}
+.ig-stats{font-size:14px; margin-top:4px} .ig-stats b{font-weight:700}
+.ig-bio{grid-column:1/-1; font-size:14px; color:#D0D0D6}
+.feed{display:grid; gap:clamp(30px, 6vw, 56px)}
+.post .tape{aspect-ratio:16/10; border:1px solid var(--line2)}
+.post-row{display:flex; justify-content:space-between; align-items:baseline; gap:6px 16px; flex-wrap:wrap; padding-top:9px; font:13px/1.3 var(--mono); letter-spacing:.06em; text-transform:uppercase}
+.post-row span:last-child{color:var(--dim)}
+.post-d{margin-top:6px; font-size:14px; color:#C9C9D1; max-width:70ch}
+.post-btn{justify-self:start; background:var(--yellow); color:#000; border:1px solid #000; padding:8px 12px; font:700 12px/1 var(--mono); text-transform:uppercase; box-shadow:inset 1px 1px 0 #fff8b8, inset -2px -2px 0 #b3a420}
+
+/* ── wiki (dark encyclopedia) ── */
+.wiki{background:var(--wk-bg); color:var(--wk-fg); border:1px solid var(--wk-line); padding:18px clamp(14px, 3vw, 28px) 28px; font:15px/1.6 var(--sans)}
+.wiki a{color:var(--wk-link)} .wiki a:visited{color:#A68BE8}
+.wiki h1{font:400 clamp(26px, 4vw, 32px)/1.25 var(--serif); border-bottom:1px solid var(--wk-line); padding-bottom:4px}
+.wiki .from{font-size:13px; color:var(--wk-dim); margin:6px 0 14px}
+.wiki h2{font:400 22px/1.3 var(--serif); border-bottom:1px solid var(--wk-line); margin:26px 0 10px; padding-bottom:3px}
+.wiki p, .wiki ul, .wiki ol{max-width:72ch}
+.wiki p + p{margin-top:10px}
+.wiki ul, .wiki ol{padding-left:22px; display:grid; gap:4px}
+.infobox{float:none; width:100%; table-layout:fixed; border-collapse:collapse; border:1px solid var(--wk-line); background:var(--wk-box); font-size:13px; margin:0 0 16px}
+.infobox td, .infobox th{overflow-wrap:anywhere}
+@media (min-width:720px){ .infobox{float:right; width:290px; margin:0 0 14px 20px} }
+.infobox caption{font:700 16px/1.3 var(--serif); padding:8px; text-align:center}
+.infobox .pic{display:grid; place-items:center; padding:10px; border-top:1px solid var(--wk-line)}
+.infobox .pic span{font:900 clamp(22px, 7vw, 34px)/1 "Unbounded",var(--sans); letter-spacing:-.04em; white-space:nowrap}
+.infobox th, .infobox td{text-align:left; vertical-align:top; padding:4px 8px; border-top:1px solid var(--wk-line)}
+.infobox th{width:38%}
+.toc{display:inline-block; border:1px solid var(--wk-line); background:var(--wk-box); padding:8px 14px 10px; margin:12px 0 6px; font-size:14px}
+.toc b{display:block; text-align:center; margin-bottom:4px}
+.toc ol{padding-left:18px; gap:2px}
+.st{display:grid; grid-template-columns:repeat(2, minmax(0,max-content)); gap:10px 56px; font:14px/1.7 var(--mono)}
+.st h3{font:700 13px/1.4 var(--mono); color:var(--wk-dim); letter-spacing:.04em; margin-bottom:2px}
+.st ul{list-style:none; padding:0; gap:0}
+.wiki dl dt{font-weight:700; margin-top:10px} .wiki dl dd{margin-left:22px; color:#D6D9DE}
+.clear{clear:both}
+
+/* ── market (auction parody) ── */
+.mk-head{display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:10px; border-bottom:2px solid var(--line); padding-bottom:10px}
+.mk-head h1{font:clamp(30px, 6vw, 44px)/1 var(--impact); letter-spacing:.02em; text-transform:uppercase}
+.mk-head h1 span{color:var(--yellow)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chips button{background:#111; border:1px solid var(--line); padding:6px 10px; font:12px/1 var(--mono)}
+.chips button[aria-pressed="true"]{background:var(--fg); color:#000}
+.listings{list-style:none; display:grid; gap:10px; margin-top:12px}
+.lst{display:grid; grid-template-columns:110px minmax(0,1fr); gap:12px; padding:10px; border:1px solid var(--line2); background:var(--panel)}
+.lst[hidden]{display:none}
+@media (min-width:640px){ .lst{grid-template-columns:150px minmax(0,1fr) auto; align-items:center} }
+.lst .tape{aspect-ratio:1/1; border:1px solid var(--line)}
+.lst h2{font:700 17px/1.25 var(--sans); color:var(--link); text-decoration:underline}
+.lst .who{font-size:12px; color:var(--dim); margin:2px 0 6px}
+.lst ul{list-style:none; font:12px/1.55 var(--mono); color:#C9C9D1}
+.lst ul b{color:var(--fg); font-weight:700}
+.lst ul li.note{color:var(--yellow); opacity:.9}
+.lst .act{grid-column:1/-1; display:flex; gap:8px; align-items:center; justify-content:space-between}
+@media (min-width:640px){ .lst .act{grid-column:auto; flex-direction:column; align-items:stretch} }
+.lst .price{font:12px/1.3 var(--mono); color:var(--yellow)}
+.mk-note{font:12px/1.5 var(--mono); color:var(--dim); margin-top:12px}
+
+/* ── contact: win98 dialog ── */
+.contact{display:grid; gap:16px}
+@media (min-width:860px){ .contact{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); align-items:start} }
+.w98{background:var(--win); color:#000; border:1px solid; border-color:var(--win-hi) #000 #000 var(--win-hi); box-shadow:inset -1px -1px 0 var(--win-lo), inset 1px 1px 0 #DFDFDF; padding:3px; font:13px/1.4 var(--sans)}
+.w98-bar{display:flex; align-items:center; gap:6px; height:22px; padding:0 3px 0 6px; background:linear-gradient(90deg,var(--win-title),var(--win-title2)); color:#fff; font-weight:700; font-size:13px}
+.w98-bar span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.w98-x{margin-left:auto; display:flex; gap:2px; flex:none}
+.w98-x i{width:16px; height:14px; background:var(--win); border:1px solid; border-color:#fff #000 #000 #fff; display:grid; place-items:center; font:700 10px/1 var(--sans); color:#000; font-style:normal}
+.w98-body{padding:12px}
+.form{display:grid; gap:12px}
+.hp{position:absolute; left:-9999px; width:1px; height:1px}
+.fld{display:grid; gap:4px; font-weight:700}
+.fld em{font-weight:400; font-style:normal; color:#333}
+.fld input, .fld textarea, .fld select{font:400 16px/1.35 var(--sans); color:#000; background:#fff; padding:6px 7px; width:100%; border:2px solid; border-color:var(--win-lo) var(--win-hi) var(--win-hi) var(--win-lo); box-shadow:inset 1px 1px 0 #000; border-radius:0}
+.fld textarea{min-height:110px; resize:vertical}
+.fld input[aria-invalid="true"]{background:#FFFFE1}
+.row2{display:grid; gap:12px} @media (min-width:560px){ .row2{grid-template-columns:1fr 1fr} }
+fieldset.ck{border:1px solid var(--win-lo); box-shadow:1px 1px 0 #fff; padding:8px 10px 10px; display:flex; flex-wrap:wrap; gap:6px 14px}
+fieldset.ck legend{padding:0 4px; font-weight:700}
+fieldset.ck label{display:flex; gap:6px; align-items:center; font-weight:400}
+fieldset.ck input{width:16px; height:16px; accent-color:#000080}
+.b98{min-height:30px; padding:0 16px; background:var(--win); color:#000; border:1px solid; border-color:#fff #000 #000 #fff; box-shadow:inset -1px -1px 0 var(--win-lo), inset 1px 1px 0 #DFDFDF; font:700 13px/1 var(--sans)}
+.b98:active{border-color:#000 #fff #fff #000; box-shadow:inset 1px 1px 0 var(--win-lo)}
+.b98.main{outline:1px solid #000; outline-offset:-4px}
+.actions{display:flex; flex-wrap:wrap; gap:8px}
+.status{min-height:20px; font-weight:700}
+.privacy{font-size:12px; color:#333}
+.avail{border:2px solid var(--line); padding:12px 14px; font:13px/1.6 var(--mono); display:grid; gap:10px}
+.avail h2{font:22px/1 var(--impact); letter-spacing:.04em; text-transform:uppercase}
+.avail a{color:var(--ice)}
+
+/* ── footer ── */
+.foot{border-top:1px solid var(--line); padding:18px 0 calc(28px + env(safe-area-inset-bottom, 0px)); font:12px/1.7 var(--mono); color:var(--dim)}
+.foot .wrap{display:grid; gap:6px}
+.foot nav{display:flex; flex-wrap:wrap; gap:4px 10px}
+.foot nav a{color:var(--fg)}
+.foot .big{font:900 clamp(30px, 9vw, 64px)/1 "Unbounded",var(--sans); letter-spacing:-.04em; margin-bottom:6px}
+.badges{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
+.badges span{font:10px/1 var(--pixel); color:#000; background:var(--yellow); border:1px solid; border-color:#fff #404040 #404040 #fff; padding:4px 6px}
+
+@media (prefers-reduced-motion:reduce){ .rec i{animation:none} .pre.tracking .pre-count{animation:none} }
+</style>
+
+<div class="pre" id="pre" aria-hidden="true" hidden>
+  <div class="pre-frames" id="preFrames"></div>
+  <div class="pre-row"><span id="preState">PLAY ▶</span><span>SP</span></div>
+  <div class="pre-mid">
+    <div class="pre-count" id="preCount">0:00:00</div>
+    <div class="pre-track"><i id="preBar"></i></div>
+    <span class="pre-tr">TRACKING</span>
+  </div>
+  <div class="pre-row"><span>CH 01 · OBSCENE</span><button class="pre-skip" id="preSkip" type="button">SKIP ▶▶</button></div>
+</div>
+
+<header class="ubar">
+  <div class="wrap">
+    <a class="home" href="#home" data-go="home">obscene</a>
+    <span class="path" id="path">/home</span>
+    <nav aria-label="Pages">
+      <a href="#home" data-go="home">home</a><a href="#work" data-go="work">work</a><a href="#wiki" data-go="wiki">wiki</a><a href="#market" data-go="market">market</a><a href="#contact" data-go="contact">contact</a>
+    </nav>
+    <a class="go" href="#contact" data-go="contact">START A PROJECT</a>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <!-- ───────── HOME ───────── -->
+  <section class="page" id="p-home" data-page="home" aria-labelledby="h-home">
+    <h1 class="sr" id="h-home" tabindex="-1">OBSCENE, web design studio</h1>
+    <div class="tape hero">
+      <span class="rec" aria-hidden="true"><i></i>PLAY</span>
+      <video class="v" data-src="vhs/hero.mp4" poster="vhs/hero.jpg" muted loop playsinline preload="none" aria-label="The chrome OBSCENE wordmark over a ring of spinning voxel icons, on worn VHS tape"></video>
+      <span class="cap" aria-hidden="true">SP 0:00:12</span>
+    </div>
+
+    <div class="intro">
+      <article class="ms" aria-label="About OBSCENE">
+        <div class="ms-head">
+          <div class="ms-av" aria-hidden="true"><span></span></div>
+          <div><p class="ms-name">OBSCENE</p><p class="ms-role">Web design studio. Est. 2026.</p></div>
+        </div>
+        <div class="ms-main">
+          <div class="ms-bio">
+            <h3>About</h3>
+            <p>Most websites look like they came out of the same box. Yours shouldn’t. We give your site a personality, your personality, so the first scroll tells people exactly who you are.</p>
+            <h3>Message from OBSCENE</h3>
+            <p class="ms-msg">Every site here was built from scratch around one artist. Yours is next.</p>
+          </div>
+          <aside class="ms-side">
+            <h3>Availability</h3>
+            <ul>
+              <li>Status: <b>taking new projects</b></li>
+              <li>Instagram: <a class="ig" href="https://instagram.com/obscenecheques" target="_blank" rel="noopener">@obscenecheques</a></li>
+            </ul>
+            <a class="ms-cta" href="#contact" data-go="contact">START A PROJECT</a>
+          </aside>
+        </div>
+      </article>
+
+      <section class="player" id="player" aria-label="OBSCENE radio">
+        <div class="pl-top"><p class="pl-title">OBSCENE RADIO</p><a id="plLink" href="#" target="_blank" rel="noopener">SoundCloud ↗</a></div>
+        <div class="pl-now">
+          <div class="pl-ctl">
+            <button class="pl-btn" id="plPrev" type="button" aria-label="Previous track" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="2" height="12"/><path d="M14 2L5 8l9 6z"/></svg></button>
+            <button class="pl-btn main" id="plPlay" type="button" aria-label="Play" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path id="plIcon" d="M4 2l10 6-10 6z"/></svg></button>
+            <button class="pl-btn" id="plNext" type="button" aria-label="Next track" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l9 6-9 6z"/><rect x="12" y="2" width="2" height="12"/></svg></button>
+          </div>
+          <div class="pl-info">
+            <p class="pl-track" id="plTrack">Loading the playlist…</p>
+            <div class="pl-meta"><span id="plCount">00/00</span><span id="plTime">0:00</span></div>
+            <div class="pl-bar" aria-hidden="true"><b id="plBar"></b></div>
+          </div>
+        </div>
+        <ul class="pl-list" id="plList" aria-label="Playlist"></ul>
+        <p class="pl-note" id="plNote" role="status"></p>
+        <div class="pl-embed" id="plEmbed"></div>
+      </section>
+    </div>
+
+    <nav class="portal" aria-label="Enter">
+      <a class="tile tape" href="#work" data-go="work"><video class="v" data-src="vhs/obj_camera.mp4" poster="vhs/obj_camera.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="lbl"><b>Work</b><small>sites we<br>built</small></span></a>
+      <a class="tile tape" href="#wiki" data-go="wiki"><video class="v" data-src="vhs/obj_bubble.mp4" poster="vhs/obj_bubble.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="lbl"><b>Wiki</b><small>who we are<br>+ FAQ</small></span></a>
+      <a class="tile tape" href="#market" data-go="market"><video class="v" data-src="vhs/obj_cash.mp4" poster="vhs/obj_cash.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="lbl"><b>Market</b><small>what we<br>build</small></span></a>
+      <a class="tile tape" href="#player" data-listen><video class="v" data-src="vhs/obj_headphones.mp4" poster="vhs/obj_headphones.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="lbl"><b>Listen</b><small>studio<br>radio</small></span></a>
+      <a class="tile tape wide" href="#contact" data-go="contact"><video class="v" data-src="vhs/obj_phone.mp4" poster="vhs/obj_phone.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="lbl"><b>Contact</b><small>start a<br>project</small></span></a>
+    </nav>
+    <p class="hint keys">Keyboard: <kbd>h</kbd> home <kbd>w</kbd> work <kbd>k</kbd> wiki <kbd>m</kbd> market <kbd>c</kbd> contact <kbd>p</kbd> play/pause</p>
+  </section>
+
+  <!-- ───────── WORK ───────── -->
+  <section class="page" id="p-work" data-page="work" aria-labelledby="h-work" hidden>
+    <p class="crumb"><a href="#home" data-go="home">Homepage</a> &gt; <b>WORK</b></p>
+    <header class="ig-head">
+      <div class="ig-av" aria-hidden="true"><span></span></div>
+      <div>
+        <h1 class="ig-name" id="h-work" tabindex="-1">obscene <small>@obscenecheques</small></h1>
+        <p class="ig-stats"><b>3</b> posts</p>
+      </div>
+      <p class="ig-bio">websites with a personality // built from scratch, one artist at a time</p>
+    </header>
+    <div class="feed">
+      <article class="post">
+        <div class="tape"><span class="rec" aria-hidden="true"><i></i>PLAY</span><video class="v" data-src="vhs/vosera.mp4" poster="vhs/vosera.jpg" muted loop playsinline preload="none" aria-label="The Voseracity site: VCR intro, the hero reel and the work grid"></video></div>
+        <p class="post-row"><span>Voseracity</span><span>Photography / Videography</span></p>
+        <p class="post-d">A creative director’s portfolio that plays like a tape: VCR intro, a reel on the first screen, a creative mode that turns the whole site into his footage, and booking built in.</p>
+      </article>
+      <article class="post">
+        <div class="tape"><span class="rec" aria-hidden="true"><i></i>PLAY</span><video class="v" data-src="vhs/okchef-clean.mp4" poster="vhs/okchef-clean.jpg" muted loop playsinline preload="none" aria-label="Scrolling through the OKCHEF site: weekly sample player, full collection and cello library"></video></div>
+        <p class="post-row"><span>OKCHEF</span><span>Music Production</span></p>
+        <p class="post-d">A home for a producer’s weekly sample drops, full collection and cello library. Listen, pick and buy in one scroll.</p>
+      </article>
+      <article class="post">
+        <div class="tape"><span class="rec" aria-hidden="true"><i></i>PLAY</span><video class="v" data-src="vhs/monoha.mp4" poster="vhs/monoha.jpg" muted loop playsinline preload="none" aria-label="The mono-ha site: a stone, a cup, a stick, two monkeys and an egg stacked in the game, then knocked over"></video></div>
+        <p class="post-row"><span>mono-ha</span><span>Music Production</span></p>
+        <p class="post-d">No store, no clutter. A stacking game built from his own drawings and recorded sounds, plus an email list. The site is the vibe.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────── WIKI ───────── -->
+  <section class="page" id="p-wiki" data-page="wiki" aria-labelledby="h-wiki" hidden>
+    <p class="crumb"><a href="#home" data-go="home">Homepage</a> &gt; <b>WIKI</b></p>
+    <article class="wiki">
+      <h1 id="h-wiki" tabindex="-1">Obscene (web design studio)</h1>
+      <p class="from">From the OBSCENE archive</p>
+      <table class="infobox">
+        <caption>OBSCENE</caption>
+        <tr><td colspan="2" class="pic"><span class="chrome">OBSCENE</span></td></tr>
+        <tr><th scope="row">Type</th><td>Web design studio</td></tr>
+        <tr><th scope="row">Founded</th><td>2026</td></tr>
+        <tr><th scope="row">Instagram</th><td><a class="ig" href="https://instagram.com/obscenecheques" target="_blank" rel="noopener">@obscenecheques</a></td></tr>
+        <tr><th scope="row">Builds for</th><td>Producers, photographers, videographers, and anyone creative who wants a site with their personality in it</td></tr>
+        <tr><th scope="row">Makes</th><td>Websites, beat stores, email lists, booking sites</td></tr>
+        <tr><th scope="row">Hosting</th><td>By OBSCENE</td></tr>
+      </table>
+      <p><b>OBSCENE</b> is a web design studio that builds websites for creatives. It turns a creative’s work into a brand that represents them.</p>
+      <p>The studio sells outcomes rather than pages. For producers that means beats and kits that sell and an email list that grows. For videographers and photographers it means a reel or gallery up front and bookings that arrive without the “DM for rates” back-and-forth.</p>
+      <nav class="toc" aria-label="Contents"><b>Contents</b>
+        <ol><li><a href="#w-style">Style and type</a></li><li><a href="#w-faq">Frequently asked questions</a></li><li><a href="#w-see">See also</a></li></ol>
+      </nav>
+      <h2 id="w-style">Style and type</h2>
+      <div class="st">
+        <div><h3>[Style]</h3><ul><li>Minimalistic</li><li>Brutalistic</li><li>Simplistic</li><li>anything -istic</li></ul></div>
+        <div><h3>[Type]</h3><ul><li>Web Design</li><li>Art Direction</li><li>Design Concept</li><li>Interactive (games, players)</li></ul></div>
+      </div>
+      <h2 id="w-faq">Frequently asked questions</h2>
+      <dl>
+        <dt>What do I need to send?</dt><dd>Be as elaborate as you can about what you want to build.</dd>
+        <dt>Can I add new work later?</dt><dd>Yes, if you’re on our monthly care plan.</dd>
+        <dt>Who hosts it?</dt><dd>We do.</dd>
+      </dl>
+      <h2 id="w-see">See also</h2>
+      <ul><li><a href="#work" data-go="work">Work</a>: the sites we built</li><li><a href="#market" data-go="market">Market</a>: everything we build</li><li><a href="#contact" data-go="contact">Contact</a>: start a project</li></ul>
+      <div class="clear"></div>
+    </article>
+  </section>
+
+  <!-- ───────── MARKET ───────── -->
+  <section class="page" id="p-market" data-page="market" aria-labelledby="h-market" hidden>
+    <p class="crumb"><a href="#home" data-go="home">Homepage</a> &gt; <b>MARKET</b></p>
+    <div class="mk-head">
+      <h1 id="h-market" tabindex="-1">OBSCENE <span>MARKET</span></h1>
+      <div class="chips" role="group" aria-label="Filter listings">
+        <button type="button" aria-pressed="true" data-f="all">All</button>
+        <button type="button" aria-pressed="false" data-f="producer">Producers</button>
+        <button type="button" aria-pressed="false" data-f="visual">Video + photo</button>
+        <button type="button" aria-pressed="false" data-f="any">Anyone</button>
+      </div>
+    </div>
+    <ul class="listings" id="listings">
+      <li class="lst" data-for="producer any">
+        <div class="tape"><video class="v" data-src="vhs/obj_vinyl.mp4" poster="vhs/obj_vinyl.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Brand homepage</h2><p class="who">for producers and artists</p>
+          <ul><li><b>Includes:</b> your brand, credits, socials, links to your store</li><li><b>Delivery:</b> live on your domain</li><li class="note"><b>Note:</b> a Linktree is not a homepage. We checked.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Brand homepage">Request quote</button></div>
+      </li>
+      <li class="lst" data-for="producer">
+        <div class="tape"><video class="v" data-src="vhs/obj_headphones.mp4" poster="vhs/obj_headphones.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Beat store page</h2><p class="who">for producers</p>
+          <ul><li><b>Includes:</b> beat player, buy buttons, kits and packs</li><li><b>Works with:</b> your current store (BeatStars, Payhip and others)</li><li class="note"><b>Note:</b> “DM for price” not included.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Beat store page">Request quote</button></div>
+      </li>
+      <li class="lst" data-for="producer any">
+        <div class="tape"><video class="v" data-src="vhs/obj_bubble.mp4" poster="vhs/obj_bubble.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Email list setup</h2><p class="who">add-on, for anyone with fans</p>
+          <ul><li><b>Includes:</b> signup on your site, email tool connected, welcome email with a freebie</li><li><b>Good for:</b> new kits, drops and shows</li><li class="note"><b>Note:</b> your fans want to hear from you. The algorithm disagrees.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Email list setup">Request quote</button></div>
+      </li>
+      <li class="lst" data-for="visual">
+        <div class="tape"><video class="v" data-src="vhs/obj_camera.mp4" poster="vhs/obj_camera.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Photographers / Videographers</h2><p class="who">for photographers and videographers</p>
+          <ul><li><b>Includes:</b> your reel or best shots on the first screen, galleries by series, rates if you want them, a booking form</li><li><b>Delivery:</b> live on your domain</li><li class="note"><b>Note:</b> “DM for rates” was never a booking system.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Photographers / Videographers site">Request quote</button></div>
+      </li>
+      <li class="lst" data-for="producer visual any">
+        <div class="tape"><video class="v" data-src="vhs/obj_star.mp4" poster="vhs/obj_star.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Monthly care plan</h2><p class="who">after launch, for anyone</p>
+          <ul><li><b>Includes:</b> new work uploaded for you, small edits, hosting</li><li><b>Report:</b> how many people tapped Book or Buy</li><li class="note"><b>Note:</b> we update it, so you never have to remember your password.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Monthly care plan">Request quote</button></div>
+      </li>
+      <li class="lst" data-for="any">
+        <div class="tape"><video class="v" data-src="vhs/obj_cash.mp4" poster="vhs/obj_cash.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div><h2>Custom build</h2><p class="who">anything else</p>
+          <ul><li><b>Includes:</b> extra pages, a shop, client galleries, custom motion and 3D</li><li><b>Scope:</b> tell us the idea, we scope it</li><li class="note"><b>Note:</b> if you can describe it, we can probably build it. If you can’t, we’ll ask.</li></ul></div>
+        <div class="act"><span class="price">quote after a short call</span><button class="post-btn" type="button" data-item="Custom build">Request quote</button></div>
+      </li>
+    </ul>
+    <p class="mk-note">No prices on the shelf. Every build is quoted in writing after a short call.</p>
+  </section>
+
+  <!-- ───────── CONTACT ───────── -->
+  <section class="page" id="p-contact" data-page="contact" aria-labelledby="h-contact" hidden>
+    <p class="crumb"><a href="#home" data-go="home">Homepage</a> &gt; <b>CONTACT</b></p>
+    <div class="contact">
+      <div class="w98">
+        <div class="w98-bar"><span id="h-contact" tabindex="-1">New Project - OBSCENE</span><span class="w98-x" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <div class="w98-body">
+          <form id="form" class="form" novalidate>
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="row2">
+              <label class="fld" for="f-name">Name *<input id="f-name" name="name" autocomplete="name" required maxlength="80"></label>
+              <label class="fld" for="f-ig">Instagram *<input id="f-ig" name="instagram" placeholder="@yourhandle" autocapitalize="off" autocomplete="off" required maxlength="40"></label>
+            </div>
+            <label class="fld" for="f-email">Email <em>(optional, if you’d rather get the reply by email)</em><input id="f-email" name="email" type="email" autocomplete="email" maxlength="120"></label>
+            <label class="fld" for="f-item">What are you after?
+              <select id="f-item" name="item">
+                <option value="">Not sure yet</option>
+                <option>Brand homepage</option><option>Beat store page</option><option>Email list setup</option><option>Photographers / Videographers site</option><option>Monthly care plan</option><option>Custom build</option>
+              </select>
+            </label>
+            <fieldset class="ck"><legend>What do you do?</legend>
+              <label><input type="checkbox" name="does" value="Music production"> Music production</label>
+              <label><input type="checkbox" name="does" value="Videography"> Videography</label>
+              <label><input type="checkbox" name="does" value="Photography"> Photography</label>
+              <label><input type="checkbox" name="does" value="Something else"> Something else</label>
+            </fieldset>
+            <label class="fld" for="f-link">Your current link <em>(optional)</em><input id="f-link" name="link" inputmode="url" placeholder="https://" maxlength="200"></label>
+            <label class="fld" for="f-msg">Tell us about your brand <em>(optional)</em><textarea id="f-msg" name="message" maxlength="2000" placeholder="What you make, what inspires you, what your brand stands for, how you want to be seen."></textarea></label>
+            <div class="actions">
+              <button class="b98 main" type="submit" id="sendBtn">Send</button>
+              <button class="b98" type="button" id="dmBtn">Send as an Instagram DM</button>
+            </div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+            <p class="privacy">We only use this to reply to you.</p>
+          </form>
+        </div>
+      </div>
+      <aside class="avail">
+        <h2>Availability</h2>
+        <p>STATUS: taking new projects<br>INSTAGRAM: <a class="ig" href="https://instagram.com/obscenecheques" target="_blank" rel="noopener">@obscenecheques</a></p>
+        <p>As long as you’ve got an elaborate idea of what you want it to be, we can work.</p>
+        <p><a href="#wiki" data-go="wiki">Read the wiki</a> for who we are and the FAQ.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="big chrome">OBSCENE</p>
+    <nav aria-label="Footer"><a href="#home" data-go="home">[home]</a><a href="#work" data-go="work">[work]</a><a href="#wiki" data-go="wiki">[wiki]</a><a href="#market" data-go="market">[market]</a><a href="#contact" data-go="contact">[contact]</a></nav>
+    <p>DM “site” to <a class="ig" href="https://instagram.com/obscenecheques" target="_blank" rel="noopener">@obscenecheques</a>.</p>
+    <div class="badges" aria-hidden="true"><span>EST. 2026</span></div>
+    <p>©2026 OBSCENE</p>
+  </div>
+</footer>
+
+<script>
+/* ── SITE SETTINGS: the only part you need to edit ──
+   web3formsKey: free key from https://web3forms.com (enter the email that should get enquiries; paste the key between the quotes).
+                 While it's empty, Send copies the enquiry and opens an Instagram DM instead.
+   instagram:    the handle every Instagram link and DM button on the site uses.
+   soundcloud:   the playlist the radio plays. Use the full soundcloud.com/... address (short on.soundcloud.com links don't load in the player). */
+window.OBSCENE_CONFIG = {
+  web3formsKey: '',
+  instagram: 'obscenecheques',
+  soundcloud: 'https://soundcloud.com/soulixis/sets/no-date'
+};
+</script>
+<script>
+(function(){
+  const CFG = Object.assign({web3formsKey:'', instagram:'obscenecheques', soundcloud:''}, window.OBSCENE_CONFIG || {});
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* every Instagram link follows the one setting */
+  $$('a.ig').forEach(a=>{ a.href = 'https://instagram.com/' + CFG.instagram; a.textContent = '@' + CFG.instagram; });
+
+  /* ── intro: VCR blue screen, once per visit ── */
+  (function(){
+    const pre = $('#pre'); let seen = false;
+    try{ seen = sessionStorage.getItem('obscene-intro') === '1'; }catch(e){}
+    if(seen) return;
+    pre.hidden = false;
+    const frames = $('#preFrames'), count = $('#preCount'), bar = $('#preBar');
+    if(!reduce){ frames.innerHTML = [1,2,3,4,5,6].map(i=>`<img src="vhs/pre${i}.jpg" alt="">`).join(''); }
+    const imgs = [...frames.children], total = reduce ? 500 : 1700, t0 = performance.now(); let done = false, fi = -1;
+    function finish(){
+      if(done) return; done = true;
+      try{ sessionStorage.setItem('obscene-intro','1'); }catch(e){}
+      $('#preState').textContent = '■ STOP';
+      pre.classList.remove('tracking');
+      if(reduce){ pre.hidden = true; return; }
+      pre.classList.add('off');
+      setTimeout(()=>{ pre.hidden = true; }, 560);
+    }
+    function tick(now){
+      if(done) return;
+      const k = Math.min(1, (now - t0)/total);
+      const s = k*15, cs = Math.floor((s % 1)*100);
+      count.textContent = '0:00:' + String(Math.floor(s)).padStart(2,'0') + '.' + String(cs).padStart(2,'0');
+      bar.style.width = (k*100).toFixed(1) + '%';
+      const f = Math.min(imgs.length - 1, Math.floor(k*imgs.length));
+      if(imgs.length && f !== fi){ if(fi >= 0) imgs[fi].classList.remove('on'); imgs[f].classList.add('on'); fi = f; }
+      if(k > .7) pre.classList.add('tracking');
+      if(k >= 1) finish(); else requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    $('#preSkip').addEventListener('click', finish);
+    document.addEventListener('keydown', e=>{ if(e.key === 'Escape') finish(); });
+  })();
+
+  /* ── tapes: play only what is on screen ── */
+  const vio = new IntersectionObserver(es => es.forEach(e=>{ const v = e.target;
+    if(e.isIntersecting && !v.closest('[hidden]')){ if(!v.src) v.src = v.dataset.src; if(!reduce){ const p = v.play(); if(p) p.catch(()=>{}); } } else v.pause(); }), {threshold:.2});
+  $$('video.v').forEach(v=> vio.observe(v));
+  function refreshVideos(){ $$('video.v').forEach(v=>{ vio.unobserve(v); vio.observe(v); }); }
+
+  /* ── pages ── */
+  const PAGES = ['home','work','wiki','market','contact'];
+  const TITLES = {home:'OBSCENE', work:'WORK | OBSCENE', wiki:'WIKI | OBSCENE', market:'MARKET | OBSCENE', contact:'CONTACT | OBSCENE'};
+  let current = null;
+  function show(name, focus){
+    if(!PAGES.includes(name)) name = 'home';
+    if(name !== current){
+      $$('.page').forEach(p=> p.hidden = p.dataset.page !== name);
+      $$('.ubar nav a').forEach(a=>{ if(a.dataset.go === name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+      $('#path').textContent = '/' + name;
+      document.title = TITLES[name];
+      current = name; window.scrollTo(0, 0); refreshVideos();
+    }
+    if(focus){ const h = $('#p-' + name + ' [tabindex="-1"]'); if(h) h.focus({preventScroll:true}); }
+  }
+  function go(name, focus){ if(location.hash !== '#' + name){ try{ history.pushState(null, '', '#' + name); }catch(e){} } show(name, focus); }
+  document.addEventListener('click', e=>{
+    const a = e.target.closest('[data-go]'); if(!a) return;
+    e.preventDefault(); go(a.dataset.go, true);
+  });
+  window.addEventListener('popstate', ()=> show(location.hash.slice(1) || 'home', true));
+  window.addEventListener('hashchange', ()=>{ const h = location.hash.slice(1); if(PAGES.includes(h)) show(h, true); });
+  $$('[data-listen]').forEach(a=> a.addEventListener('click', e=>{ e.preventDefault(); $('#player').scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'}); $('#plPlay').focus({preventScroll:true}); }));
+  const start = location.hash.slice(1);
+  show(PAGES.includes(start) ? start : 'home', false);
+  if(start && !PAGES.includes(start)){ const el = document.getElementById(start); if(el){ const pg = el.closest('.page'); if(pg) show(pg.dataset.page, false); el.scrollIntoView(); } }
+
+  /* keyboard shortcuts */
+  const KEYS = {h:'home', w:'work', k:'wiki', m:'market', c:'contact'};
+  document.addEventListener('keydown', e=>{
+    if(e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input, textarea, select, [contenteditable]')) return;
+    if(!$('#pre').hidden) return;
+    const k = e.key.toLowerCase();
+    if(KEYS[k]){ e.preventDefault(); go(KEYS[k], true); }
+    else if(k === 'p'){ e.preventDefault(); $('#plPlay').click(); }
+  });
+
+  /* ── market filter + request quote ── */
+  $$('.chips button').forEach(b=> b.addEventListener('click', ()=>{
+    $$('.chips button').forEach(x=> x.setAttribute('aria-pressed', x === b));
+    $$('.lst').forEach(l=> l.hidden = b.dataset.f !== 'all' && !l.dataset.for.split(' ').includes(b.dataset.f)); refreshVideos();
+  }));
+  $$('[data-item]').forEach(b=> b.addEventListener('click', ()=>{
+    $('#f-item').value = b.dataset.item; go('contact', false); $('#f-name').focus();
+    setStatus('', b.dataset.item + ' selected. Add your name and Instagram and hit Send.');
+  }));
+
+  /* ── radio: the SoundCloud player does the playing, this is just the remote ── */
+  const P = {sounds:[], idx:0, playing:false, widget:null, watch:0};
+  const plList = $('#plList'), plTrack = $('#plTrack'), plNote = $('#plNote'), plEmbed = $('#plEmbed');
+  const ICON_PLAY = 'M4 2l10 6-10 6z', ICON_PAUSE = 'M3 2h4v12H3zM9 2h4v12H9z';
+  $('#plLink').href = CFG.soundcloud || 'https://soundcloud.com';
+  const fmt = ms => { const s = Math.max(0, Math.floor(ms/1000)); return Math.floor(s/60) + ':' + String(s % 60).padStart(2,'0'); };
+  function plFail(){
+    if(P.sounds.length) return;
+    plTrack.innerHTML = '<a href="' + esc(CFG.soundcloud || 'https://soundcloud.com') + '" target="_blank" rel="noopener">OPEN ON SOUNDCLOUD ↗</a>';
+    $('#plCount').textContent = '--/--';
+  }
+  function plRender(){
+    $('#plCount').textContent = String(P.idx + 1).padStart(2,'0') + '/' + String(P.sounds.length).padStart(2,'0');
+    const s = P.sounds[P.idx]; plTrack.textContent = s ? s.title : '—';
+    $$('#plList li').forEach((li,i)=>{ li.classList.toggle('on', i === P.idx); li.setAttribute('aria-current', i === P.idx); });
+    $('#plIcon').setAttribute('d', P.playing ? ICON_PAUSE : ICON_PLAY);
+    $('#plPlay').setAttribute('aria-label', P.playing ? 'Pause' : 'Play');
+    $('#plPrev').disabled = P.idx === 0; $('#plNext').disabled = P.idx >= P.sounds.length - 1;
+  }
+  /* some phones only start sound from a tap inside SoundCloud's own player: if nothing plays, show it */
+  function watchStart(){ clearTimeout(P.watch); P.watch = setTimeout(()=>{ if(!P.playing){ plEmbed.classList.add('show'); plNote.textContent = 'Your browser wants a tap on SoundCloud’s own player. Hit play below.'; } }, 1800); }
+  function playAt(i){ if(!P.widget) return; P.idx = i; P.widget.skip(i); P.widget.play(); plRender(); watchStart(); }
+  function plLoad(){
+    if(!CFG.soundcloud){ plFail(); return; }
+    const timer = setTimeout(plFail, 10000);
+    const sc = document.createElement('script'); sc.src = 'https://w.soundcloud.com/player/api.js'; sc.onerror = ()=>{ clearTimeout(timer); plFail(); };
+    sc.onload = ()=>{
+      const f = document.createElement('iframe'); f.title = 'SoundCloud player'; f.allow = 'autoplay';
+      f.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(CFG.soundcloud) + '&color=%23a9d3ff&auto_play=false&visual=false&show_artwork=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&sharing=false&buying=false&download=false';
+      plEmbed.appendChild(f);
+      const W = P.widget = SC.Widget(f), E = SC.Widget.Events;
+      W.bind(E.READY, ()=>{ W.getSounds(list=>{
+        clearTimeout(timer);
+        P.sounds = (list || []).map((s,i)=>({title:(s && s.title) ? s.title : 'track ' + String(i+1).padStart(2,'0')}));
+        if(!P.sounds.length){ plFail(); return; }
+        plList.innerHTML = P.sounds.map((s,i)=>`<li tabindex="0" data-i="${i}"><span>${String(i+1).padStart(2,'0')}</span><span>${esc(s.title)}</span></li>`).join('');
+        $$('#plList li').forEach(li=>{ const pick = ()=> playAt(+li.dataset.i); li.addEventListener('click', pick); li.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(); } }); });
+        $('#plPlay').disabled = false; plRender();
+      }); });
+      W.bind(E.PLAY, ()=>{ P.playing = true; clearTimeout(P.watch); plNote.textContent = ''; W.getCurrentSoundIndex(i=>{ if(typeof i === 'number') P.idx = i; plRender(); }); });
+      W.bind(E.PAUSE, ()=>{ P.playing = false; plRender(); });
+      W.bind(E.PLAY_PROGRESS, e=>{ $('#plTime').textContent = fmt(e.currentPosition); $('#plBar').style.width = (e.relativePosition*100).toFixed(1) + '%'; });
+      W.bind(E.FINISH, ()=>{ if(P.idx < P.sounds.length - 1) playAt(P.idx + 1); });
+    };
+    document.head.appendChild(sc);
+  }
+  $('#plPlay').addEventListener('click', ()=>{ if(!P.widget || !P.sounds.length) return; if(P.playing) P.widget.pause(); else playAt(P.idx); });
+  $('#plPrev').addEventListener('click', ()=>{ if(P.idx > 0) playAt(P.idx - 1); });
+  $('#plNext').addEventListener('click', ()=>{ if(P.idx < P.sounds.length - 1) playAt(P.idx + 1); });
+  plLoad();
+
+  /* ── enquiry form ── */
+  const form = $('#form'), status = $('#status'), sendBtn = $('#sendBtn');
+  function setStatus(kind, msg){ status.textContent = (kind === 'err' ? '! ' : kind === 'ok' ? '✓ ' : '') + msg; }
+  const handle = v => { v = (v || '').trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/[/?#].*$/, '').replace(/^@+/, ''); return v ? '@' + v : ''; };
+  function values(){ const f = new FormData(form); return {name:(f.get('name') || '').trim(), instagram:handle(f.get('instagram')), email:(f.get('email') || '').trim(), item:f.get('item') || '', does:f.getAll('does').join(', '), link:(f.get('link') || '').trim(), message:(f.get('message') || '').trim(), bot:!!f.get('botcheck')}; }
+  function validate(v){
+    const bad = [], mark = (n, isBad) => { const el = form.elements[n]; el.setAttribute('aria-invalid', isBad ? 'true' : 'false'); if(isBad) bad.push(el); };
+    mark('name', !v.name); mark('instagram', v.instagram.length < 2);
+    mark('email', !!v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email));
+    if(v.link && !/^https?:\/\//i.test(v.link) && /\S+\.\S+/.test(v.link)){ v.link = 'https://' + v.link; form.elements.link.value = v.link; }
+    mark('link', !!v.link && !/^https?:\/\/\S+\.\S+/.test(v.link));
+    if(bad.length){ bad[0].focus(); setStatus('err', (!v.name || v.instagram.length < 2) ? 'Add your name and Instagram so we can reply.' : 'Check the highlighted field.'); return false; }
+    return true;
+  }
+  const dmText = v => ['hey OBSCENE, I want a site.', 'name: ' + v.name, 'instagram: ' + v.instagram, v.email && ('email: ' + v.email), v.item && ('after: ' + v.item), v.does && ('I do: ' + v.does), v.link && ('current link: ' + v.link), v.message && ('about my brand: ' + v.message)].filter(Boolean).join('\n');
+  async function copy(text){ try{ await navigator.clipboard.writeText(text); return true; }catch(e){ const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly',''); ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); let ok = false; try{ ok = document.execCommand('copy'); }catch(_){} ta.remove(); return ok; } }
+  function sendAsDM(v){
+    const w = window.open('https://ig.me/m/' + CFG.instagram, '_blank'); if(w) try{ w.opener = null; }catch(e){}
+    copy(dmText(v)).then(ok=> setStatus('ok', ok ? 'Copied your details. Paste them in the DM to @' + CFG.instagram + '.' : 'Say “site” to @' + CFG.instagram + ' on Instagram and we’ll take it from there.'));
+    if(!w) setStatus('', 'Open instagram.com/' + CFG.instagram + ' and paste the message we copied.');
+  }
+  form.addEventListener('input', e=>{ if(e.target.getAttribute('aria-invalid') === 'true') e.target.setAttribute('aria-invalid','false'); });
+  $('#dmBtn').addEventListener('click', ()=>{ const v = values(); if(!v.name && v.instagram.length < 2){ const w = window.open('https://ig.me/m/' + CFG.instagram, '_blank'); if(w) try{ w.opener = null; }catch(e){} setStatus('', 'Say “site” in the DM to @' + CFG.instagram + ' and we’ll take it from there.'); return; } if(validate(v)) sendAsDM(v); });
+  form.addEventListener('submit', async e=>{
+    e.preventDefault(); const v = values();
+    if(v.bot){ setStatus('ok', 'Sent.'); return; }
+    if(!validate(v)) return;
+    if(!CFG.web3formsKey){ sendAsDM(v); return; }
+    sendBtn.disabled = true; setStatus('', 'Sending…');
+    try{
+      const res = await fetch('https://api.web3forms.com/submit', {method:'POST', headers:{'Content-Type':'application/json', Accept:'application/json'},
+        body:JSON.stringify({access_key:CFG.web3formsKey, subject:'New site enquiry: ' + v.name + ' (' + v.instagram + ')', from_name:'OBSCENE site', name:v.name, instagram:v.instagram, email:v.email || undefined, replyto:v.email || undefined, after:v.item || '-', does:v.does || '-', current_link:v.link || '-', about_brand:v.message || '-'})});
+      const data = await res.json().catch(()=>({}));
+      if(res.ok && data.success){ setStatus('ok', 'Sent. We’ll reply on Instagram' + (v.email ? ' or by email' : '') + ' with your quote.'); form.reset(); }
+      else throw new Error(data.message || 'failed');
+    }catch(err){ setStatus('err', 'That didn’t send. Use “Send as an Instagram DM” instead. Your details are still here.'); }
+    finally{ sendBtn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>
